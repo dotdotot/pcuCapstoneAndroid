@@ -17,11 +17,13 @@ ui 디자인 및 기능 추가 (7/23 ~ )
   - 홈 화면
   
     현재 청소기 위치에 따른 정보들을 바로 보이도록 하였습니다.
+    
     <img width="264" alt="화면-홈" src="https://user-images.githubusercontent.com/72554589/190898862-221b5a1a-e752-4650-947a-55eba72c2816.png">
     
   - 이동 화면
   
     청소기의 이동 방식을 설정하는 화면입니다. 청소기가 자동으로 움직일지, 사용자가 설정한 시간별로 움직일지, 사용자가 설정한 장소로 움직일지 설정하는 것입니다.
+    
     <img width="264" alt="화면-이동1" src="https://user-images.githubusercontent.com/72554589/190898856-3a6fee3a-71ef-4d5d-bbfa-2adc88075fb2.png">
 <img width="260" alt="화면-이동2" src="https://user-images.githubusercontent.com/72554589/190898857-680fd18a-d28d-4ad1-8af8-374568858535.png">
 <img width="265" alt="화면-이동3" src="https://user-images.githubusercontent.com/72554589/190898858-4981b534-6e87-40d5-85cc-fe1468a36055.png">    
@@ -29,18 +31,21 @@ ui 디자인 및 기능 추가 (7/23 ~ )
   - 통계 화면
   
     사용자가 원하는 기간동안의 평균적인 수치를 보여주는 화면입니다. 달력 이미지를 눌러 나오는 캘린더뷰로 날짜를 고를 수 있도록 하였습니다.
+    
     <img width="264" alt="화면-통계1" src="https://user-images.githubusercontent.com/72554589/190898859-eee1f94c-fb5a-4614-89b4-45cfb61d3996.png">
 <img width="264" alt="화면-통계2" src="https://user-images.githubusercontent.com/72554589/190898861-efe0639c-7689-4125-8039-614cd31899b2.png">
 
   - 설정 화면
   
     아직까진 로그아웃밖에 기능을 넣지 못했으나, 더 추가할 것이 생긴다면 추가할 계획입니다.
+    
     <img width="263" alt="화면-설정" src="https://user-images.githubusercontent.com/72554589/190898855-b9467837-3006-4519-9e8a-d62507442cb3.png">
    
   - 로그인
   
    화면 구성을 끝낸 후 로그인 기능을 추가하여 처음 시작이 로그인 화면이 되도록 설정하였습니다. 후에 회원가입 기능도 추가하였습니다.
    지금은 데이터베이스를 연결하지 않아 회원 정보가 저장이 되진 않습니다.
+   
    <img width="260" alt="화면-로그인" src="https://user-images.githubusercontent.com/72554589/190898854-0ab1f02b-6973-4d18-992d-8fa345b31010.png">
    <img width="261" alt="화면-회원가입1" src="https://user-images.githubusercontent.com/72554589/190898863-3b574887-c39c-496c-8f57-ec738dbc3b75.png">
 <img width="263" alt="화면-회원가입2" src="https://user-images.githubusercontent.com/72554589/190898864-81cee53d-d3e4-45c0-a04f-f3fb090ea0f3.png">
