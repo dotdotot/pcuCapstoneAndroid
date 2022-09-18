@@ -5,9 +5,8 @@ ui 디자인 및 기능 추가 (7/23 ~ )
 - 초기 구상
 
    가장 먼저 필요한 기능들이 무엇인지 정리한 후, 각 기능들을 사용자가 보기 쉽도록 기능별 화면을 디자인하였습니다.
-  ![디자인1](https://user-images.githubusercontent.com/72554589/190897369-7e189c25-ebe5-4056-b887-a929a5d835c2.jpg)
-![디자인2](https://user-images.githubusercontent.com/72554589/190897371-694af79f-14e0-4d26-84c0-032b8bba2398.jpg)
-![디자인3](https://user-images.githubusercontent.com/72554589/190897376-ecd7f183-8171-48a6-bf89-509b8bd8b6a8.jpg)
+   
+  ![디자인1](https://user-images.githubusercontent.com/72554589/190897369-7e189c25-ebe5-4056-b887-a929a5d835c2.jpg) ![디자인2](https://user-images.githubusercontent.com/72554589/190897371-694af79f-14e0-4d26-84c0-032b8bba2398.jpg) ![디자인3](https://user-images.githubusercontent.com/72554589/190897376-ecd7f183-8171-48a6-bf89-509b8bd8b6a8.jpg)
 
 - 코드 작성
 
