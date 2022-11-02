@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Room">
+        <item>"방1"</item>
+        <item>"방2"</item>
+        <item>"방3"</item>
+        <item>"방4"</item>
+    </string-array>
+    <string-array name="Date">
+        <item>"하루"</item>
+        <item>"일주일"</item>
+        <item>"한달"</item>
+        <item>"일년"</item>
+    </string-array>
+    <string-array name="Time">
+        <item>"1시간"</item>
+        <item>"2시간"</item>
+        <item>"3시간"</item>
+    </string-array>
+</resources>
