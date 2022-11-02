@@ -56,3 +56,8 @@ ui 디자인 및 기능 추가 (7/23 ~ )
  화면 이동: https://deumdroid.tistory.com/entry/%EB%B2%84%ED%8A%BC-%ED%81%B4%EB%A6%AD%EC%9C%BC%EB%A1%9C-%ED%94%84%EB%9E%98%EA%B7%B8%EB%A8%BC%ED%8A%B8-%EB%9D%84%EC%9A%B0%EA%B8%B0
  이미지 출처: https://www.flaticon.com/kr/
  ```
+
+-----------
+ - 서버 연결 추가
+ 
+ 
