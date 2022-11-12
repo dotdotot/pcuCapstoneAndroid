@@ -17,13 +17,13 @@ ui 디자인 및 기능 추가 (7/23 ~ )
   
 >현재 청소기 위치에 따른 정보들을 바로 보이도록 하였습니다.
     
-    <img width="264" alt="화면-홈" src="https://user-images.githubusercontent.com/72554589/190898862-221b5a1a-e752-4650-947a-55eba72c2816.png">
+   <img width="264" alt="화면-홈" src="https://user-images.githubusercontent.com/72554589/190898862-221b5a1a-e752-4650-947a-55eba72c2816.png">
     
   - 이동 화면
   
 >청소기의 이동 방식을 설정하는 화면입니다. 청소기가 자동으로 움직일지, 사용자가 설정한 시간별로 움직일지, 사용자가 설정한 장소로 움직일지 설정하는 것입니다.
     
-    <img width="264" alt="화면-이동1" src="https://user-images.githubusercontent.com/72554589/190898856-3a6fee3a-71ef-4d5d-bbfa-2adc88075fb2.png"> <img width="260" alt="화면-이동2" src="https://user-images.githubusercontent.com/72554589/190898857-680fd18a-d28d-4ad1-8af8-374568858535.png"> <img width="265" alt="화면-이동3" src="https://user-images.githubusercontent.com/72554589/190898858-4981b534-6e87-40d5-85cc-fe1468a36055.png">    
+   <img width="264" alt="화면-이동1" src="https://user-images.githubusercontent.com/72554589/190898856-3a6fee3a-71ef-4d5d-bbfa-2adc88075fb2.png"> <img width="260" alt="화면-이동2" src="https://user-images.githubusercontent.com/72554589/190898857-680fd18a-d28d-4ad1-8af8-374568858535.png"> <img width="265" alt="화면-이동3" src="https://user-images.githubusercontent.com/72554589/190898858-4981b534-6e87-40d5-85cc-fe1468a36055.png">    
 
   - 통계 화면
   
