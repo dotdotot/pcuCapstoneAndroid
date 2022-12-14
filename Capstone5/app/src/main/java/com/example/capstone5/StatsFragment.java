@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageView;
@@ -27,13 +29,26 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StatsFragment extends Fragment {
-    String url; String url_plus;
-    JSONArray jsonArray;
-    JSONObject jsonObject;
-    int temp; int humi; int dust;
+    String login_ID;
+    String url_stat; String url_plus; String url_get;
+    String old_room_arr[];
+    String old_room_arr_kr[];
+    String old_room_select;
+    JSONArray jsonArray_room;
+    JSONObject jsonObject_room_big;
+    JSONObject jsonObject_room_small[];
+    JSONArray jsonArray_stats;
+    JSONObject jsonObject_stats_big;
+    JSONObject jsonObject_stats_small[];
+    ArrayAdapter<String> old_room_adapter;
+    ArrayList<String> old_room_list;
+    int temp[]; int humi[]; int dust[];
+    double avg_temp = 0, avg_humi = 0, avg_dust = 0;
+    int length;
     String start_date; String end_date;
 
     @Override
@@ -55,11 +70,67 @@ public class StatsFragment extends Fragment {
         TextView stats_temp = (TextView)view.findViewById(R.id.stats_temp);
         TextView stats_humi = (TextView)view.findViewById(R.id.stats_humi);
         TextView stats_dust = (TextView)view.findViewById(R.id.stats_dust);
-        url = "https://203.250.133.171:8000/stat/";
+        url_stat = "https://203.250.133.171:8000/androidMethod/stat/" + login_ID;
+        url_get = "https://203.250.133.171:8000/androidMethod/getRoom/" + login_ID;
 
         //초기 캘린더 안보이게
         start_cal.setVisibility(View.INVISIBLE);
         end_cal.setVisibility(View.INVISIBLE);
+
+        //실제 서버 연결
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        HashMap<String, String> params = new HashMap<String, String>();
+        //전송 url 및 data 파싱
+        String dataParse = "";
+        String getUrl = "";
+        dataParse = String.valueOf(params.toString());
+        dataParse = dataParse.replaceAll("[{]","");
+        dataParse = dataParse.replaceAll("[}]","");
+        dataParse = dataParse.replaceAll("[,]","&");
+        getUrl = url_get + "?" + dataParse;
+        getUrl = getUrl.replaceAll(" ","");
+        //response 객체 생성
+        StringRequest request = new StringRequest(Request.Method.GET, getUrl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            Log.d("", "\nsetting success");
+                            Log.d("","\n"+"["+"응답 전체 - "+String.valueOf(response.toString())+"]");
+                            jsonObject_room_big = new JSONObject(response);
+                            jsonArray_room = jsonObject_room_big.getJSONArray("result");
+                            length = jsonArray_room.length();
+                            jsonObject_room_small = new JSONObject[length];
+                            old_room_arr = new String[length];
+                            old_room_arr_kr = new String[length];
+                            old_room_list = new ArrayList<String>();
+                            for(int i = 0; i<length; i++) {
+                                jsonObject_room_small[i] = jsonArray_room.getJSONObject(i);
+                                old_room_arr[i] = jsonObject_room_small[i].getString("room_name");
+                                old_room_arr_kr[i] = new String(old_room_arr[i].getBytes("8859_1"),"utf-8");
+                                old_room_list.add(old_room_arr_kr[i]);
+                            }
+                            old_room_adapter = new ArrayAdapter<>(getActivity().getBaseContext(), android.R.layout.simple_spinner_dropdown_item, old_room_list);
+                            stats_room.setAdapter(old_room_adapter);
+                            stats_room.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                    old_room_select = old_room_list.get(i);
+                                }
+                                @Override
+                                public void onNothingSelected(AdapterView<?> adapterView) {}
+                            });
+                        } catch (JSONException | UnsupportedEncodingException e) { e.printStackTrace(); }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("", "\nstats failed");
+                    }
+                });
+        request.setShouldCache(false);
+        queue.add(request);
 
         //start_date_btn와 end_date_btn 눌렀을 때
         start_date_btn.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +194,7 @@ public class StatsFragment extends Fragment {
         cancel_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 start_year[0] = 0;  start_month[0] = 0; start_day[0] = 0;
                 end_year[0] = 2100; end_month[0] = 12;  end_day[0] = 31;
                 start_date_text.setText(""); end_date_text.setText("");
@@ -134,6 +206,9 @@ public class StatsFragment extends Fragment {
         ok_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //평균값 초기화
+                avg_temp = 0;   avg_humi = 0;   avg_dust = 0;
 
                 //실제 서버 연결
                 RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
@@ -151,8 +226,8 @@ public class StatsFragment extends Fragment {
                 dataParse = dataParse.replaceAll("[{]","");
                 dataParse = dataParse.replaceAll("[}]","");
                 dataParse = dataParse.replaceAll("[,]","&");
-                url_plus = "test1" + "/" + stats_room.getSelectedItem().toString() +"/" + start_date + "00:00:00" + "/" + end_date + "00:00:00";
-                getUrl = url + url_plus + "?" + dataParse;
+                url_plus = "/" + old_room_select +"/" + start_date + "00:00:00" + "/" + end_date + "00:00:00";
+                getUrl = url_stat + url_plus + "?" + dataParse;
 
                 //response 객체 생성
                 StringRequest request = new StringRequest(Request.Method.GET, getUrl,
@@ -160,15 +235,40 @@ public class StatsFragment extends Fragment {
                             @Override
                             public void onResponse(String response) {
                                 Log.d("", "\nstats success");
+                                Log.d("","\n"+"["+"응답 전체 - "+String.valueOf(response.toString())+"]");
                                 try {
-                                    jsonArray = new JSONArray(response);
-                                    Log.d("", "length=" + jsonArray.length());
-                                    jsonObject = jsonArray.getJSONObject(0);
-                                    temp = jsonObject.getInt("temp");
-                                    stats_temp.setText(String.valueOf(temp));
+                                    //값 받는 코드
+                                    jsonObject_stats_big = new JSONObject(response);                //받은 값(전체)를 jsonObject_big에 저장
+                                    jsonArray_stats = jsonObject_stats_big.getJSONArray("result");  //jsonObject_big에 result array값 저장
+                                    length = jsonArray_stats.length();                              //jsonArray 길이 저장
+                                    jsonObject_stats_small = new JSONObject[length];                //jsonObject_small 크기 초기화
+                                    temp = new int[length];
+                                    humi = new int[length];
+                                    dust = new int[length];
+                                    //개별 값 저장
+                                    for(int i = 0; i<length; i++) {
+                                        jsonObject_stats_small[i] = jsonArray_stats.getJSONObject(i);
+                                        temp[i] = jsonObject_stats_small[i].getInt("temp");
+                                        humi[i] = jsonObject_stats_small[i].getInt("humitiy");
+                                        dust[i] = jsonObject_stats_small[i].getInt("finedust");
+                                    }
+                                    //평균 값 구하기
+                                    for(int i = 0; i<length; i++) {
+                                        avg_temp += temp[i];
+                                        avg_humi += humi[i];
+                                        avg_dust += dust[i];
+                                    }
+                                    avg_temp /= length;
+                                    avg_humi /= length;
+                                    avg_dust /= length;
+
+                                    stats_temp.setText(String.valueOf(avg_temp));
+                                    stats_humi.setText(String.valueOf(avg_humi));
+                                    stats_dust.setText(String.valueOf(avg_dust));
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
+
                             }
                         },
                         new Response.ErrorListener() {

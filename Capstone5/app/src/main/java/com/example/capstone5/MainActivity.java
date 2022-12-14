@@ -1,6 +1,7 @@
 package com.example.capstone5;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     StatsFragment statsFragment;
     SettingFragment settingFragment;
     NavigationBarView navigationBarView;
+    String login_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,19 +47,23 @@ public class MainActivity extends AppCompatActivity {
                 switch(item.getItemId()){
                     case R.id.home:
                         setTitle("홈");
+                        homeFragment.login_ID = login_id;
                         getSupportFragmentManager().beginTransaction().replace(R.id.containers, homeFragment).commit();
                         return true;
                     case R.id.move:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.containers, moveFragment).commit();
                         setTitle("이동");
+                        moveFragment.login_ID = login_id;
+                        getSupportFragmentManager().beginTransaction().replace(R.id.containers, moveFragment).commit();
                         return true;
                     case R.id.stats:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.containers, statsFragment).commit();
                         setTitle("통계");
+                        statsFragment.login_ID = login_id;
+                        getSupportFragmentManager().beginTransaction().replace(R.id.containers, statsFragment).commit();
                         return true;
                     case R.id.setting:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.containers, settingFragment).commit();
                         setTitle("설정");
+                        settingFragment.login_ID = login_id;
+                        getSupportFragmentManager().beginTransaction().replace(R.id.containers, settingFragment).commit();
                         return true;
                 }
                 return false;
@@ -65,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void onFragmentChange(int index) {
+    //화면 전환 (로그인/회원가입/홈)
+    public void onFragmentChange(int index, String id) {
         if(index == 0) {         //로그인 화면
             getSupportFragmentManager().beginTransaction().replace(R.id.containers, loginFragment).commit();
             navigationBarView.setVisibility(View.INVISIBLE); //네비게이션 바 안보이게
@@ -78,8 +85,11 @@ public class MainActivity extends AppCompatActivity {
         else if(index == 2) {   //홈 화면
             getSupportFragmentManager().beginTransaction().replace(R.id.containers, homeFragment).commit();
             navigationBarView.setVisibility(View.VISIBLE);   //네비게이션 바 보이게
+            homeFragment.login_ID = id;
             setTitle("홈");
         }
     }
 
+    //로그인 한 아이디 저장
+    public void setId(String id) { login_id = id; }
 }

@@ -3,18 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_frag"
     android:orientation="vertical"
     tools:context=".HomeFragment">
 
-    <TextView
-        android:id="@+id/homeText"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="70dp"
-        android:text="실시간 측정값"
-        android:textSize="40sp" />
+        android:layout_marginBottom="70dp">
+
+        <TextView
+            android:id="@+id/homeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="실시간 측정값"
+            android:textSize="40sp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp">
+
+            <ImageView
+                android:id="@+id/LED_red"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                app:srcCompat="@drawable/circle_red"/>
+            <ImageView
+                android:id="@+id/LED_green"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                app:srcCompat="@drawable/circle_green"/>
+            <ImageView
+                android:id="@+id/LED_yellow"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                app:srcCompat="@drawable/circle_yellow"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -30,8 +61,7 @@
             android:id="@+id/home_loc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="실험"/>
+            android:textSize="20sp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"

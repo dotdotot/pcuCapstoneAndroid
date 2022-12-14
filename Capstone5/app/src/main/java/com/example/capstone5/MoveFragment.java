@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -32,6 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MoveFragment extends Fragment {
+    String login_ID;
     int move_select;
     int move_time_select_int;    int move_room_select_int;
     String move_time_select_str; String move_room_select_str;
@@ -48,13 +50,14 @@ public class MoveFragment extends Fragment {
         RadioButton move_auto = view.findViewById(R.id.move_auto);
         RadioButton move_time = view.findViewById(R.id.move_time);
         RadioButton move_random = view.findViewById(R.id.move_random);
+        TextView move_time_text = view.findViewById(R.id.time_text);
         Spinner move_time_spi = view.findViewById(R.id.time_spi);
         Spinner move_room_spi = view.findViewById(R.id.room_spi);
         Button cancel_btn = view.findViewById(R.id.cancel_btn);
         Button ok_btn = view.findViewById(R.id.ok_btn);
         move_time_select_int = 0;
         move_room_select_int = 0;
-        url = "https://203.250.133.171:8000/";
+        url = "https://203.250.133.171:8000/androidMethod/move/" + login_ID;
 
         //이전 설정값 기록
         if(move_auto.isChecked())       { move_select = 1; }
@@ -63,6 +66,7 @@ public class MoveFragment extends Fragment {
 
         //스피너 안보이게
         move_time_spi.setVisibility(View.INVISIBLE);
+        move_time_text.setVisibility(View.INVISIBLE);
         move_room_spi.setVisibility(View.INVISIBLE);
 
         //라디오버튼
@@ -72,14 +76,17 @@ public class MoveFragment extends Fragment {
                 switch (i) {
                     case R.id.move_auto:    //자동
                         move_time_spi.setVisibility(View.INVISIBLE); //안보이게
+                        move_time_text.setVisibility(View.INVISIBLE);//안보이게
                         move_room_spi.setVisibility(View.INVISIBLE); //안보이게
                         break;
                     case R.id.move_time:    //시간별
                         move_time_spi.setVisibility(View.VISIBLE);   //보이게
+                        move_time_text.setVisibility(View.VISIBLE);  //보이게
                         move_room_spi.setVisibility(View.INVISIBLE); //안보이게
                         break;
                     case R.id.move_random:  //임의 지정
                         move_time_spi.setVisibility(View.INVISIBLE); //안보이게
+                        move_time_text.setVisibility(View.INVISIBLE);//안보이게
                         move_room_spi.setVisibility(View.VISIBLE);   //보이게
                         break;
                 }

@@ -40,6 +40,7 @@
         android:id="@+id/login_notice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="83.5dp"
         android:text=""/>
     <Button
         android:id="@+id/login_btn"
@@ -54,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:background="@color/white"
+        android:background="#00ff0000"
         android:text="@string/signup"
         android:textSize="15sp"/>
 

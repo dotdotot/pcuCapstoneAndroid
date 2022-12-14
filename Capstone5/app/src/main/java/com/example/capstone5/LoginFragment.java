@@ -40,6 +40,7 @@ public class LoginFragment extends Fragment {
     String url;
     JSONObject jsonObject;
     String success;
+    String TRUE = new String("TRUE");
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -92,8 +93,19 @@ public class LoginFragment extends Fragment {
                                 Log.d("", "\nlogin success");
                                 try {
                                     jsonObject = new JSONObject(response);
-                                    Log.d("","\n"+"["+"응답 전체 - "+String.valueOf(response.toString())+"]");
                                     success = jsonObject.getString("result");
+                                    if(success.equals(TRUE)) {
+                                        activity.onFragmentChange(2, login_id_edt.getText().toString()); //홈 화면으로 이동
+                                        activity.setId(login_id_edt.getText().toString());
+                                        //모든 칸 비우기
+                                        login_notice.setText("");
+                                        login_id_edt.setText("");
+                                        login_pw_edt.setText("");
+                                    }
+                                    else {
+                                        login_notice.setText("아이디 혹은 비밀번호를 잘못 입력했습니다.");
+                                        login_notice.setTextColor(getResources().getColor(R.color.red));
+                                    }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -107,13 +119,7 @@ public class LoginFragment extends Fragment {
                 request.setShouldCache(false);
                 queue.add(request);
 
-                if(success.equals("TRUE"))
-                    activity.onFragmentChange(2);                      //홈 화면으로 이동
-                else {
-                    login_notice.setText("아이디 혹은 비밀번호를 잘못 입력했습니다.");
-                    login_notice.setTextColor(getResources().getColor(R.color.red));
-                }
-                login_id_edt.setText("");   login_pw_edt.setText("");   //입력칸 비우기
+
             }
         });
 
@@ -121,7 +127,7 @@ public class LoginFragment extends Fragment {
         login_signup_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.onFragmentChange(1);                     //홈 화면으로 이동
+                activity.onFragmentChange(1, "");                     //홈 화면으로 이동
                 login_id_edt.setText("");   login_pw_edt.setText("");   //입력칸 비우기
             }
         });

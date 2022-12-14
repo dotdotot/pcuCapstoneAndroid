@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="Room">
-        <item>"tt"</item>
+        <item>"거실"</item>
         <item>"방2"</item>
         <item>"방3"</item>
         <item>"방4"</item>

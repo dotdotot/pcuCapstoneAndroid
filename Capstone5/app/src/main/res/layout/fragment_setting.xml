@@ -9,21 +9,98 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-
-            <Button
-                android:id="@+id/set_logout"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:orientation="vertical">
+                <Button
+                    android:id="@+id/set_rename"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="방 이름 수정" />
+                <Button
+                    android:id="@+id/set_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#00ff0000"
+                    android:textColor="@color/black"
+                    android:text="로그아웃" />
+            </LinearLayout>
 
-                android:text="로그아웃" />
+            <LinearLayout
+                android:id="@+id/rename_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffffff"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="180dp"
+                    android:text="방 이름 수정"
+                    android:textSize="30dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80dp">
+
+                    <Spinner
+                        android:id="@+id/room_before"
+                        android:layout_width="110dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="60dp"
+                        android:entries="@array/Room"
+                        android:spinnerMode="dropdown" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="25dp"
+                        android:text="▶"
+                        android:textSize="20dp" />
+
+                    <EditText
+                        android:id="@+id/room_after"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:importantForAutofill="no"
+                        android:hint="바꿀 방 이름"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="170dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="230dp"
+                    android:layout_marginTop="40dp">
+                    <Button
+                        android:id="@+id/rename_cancel"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="left"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:text="취소"/>
+                    <Button
+                        android:id="@+id/rename_ok"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="right"
+                        android:layout_weight="1"
+                        android:text="확인"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </FrameLayout>
     </ScrollView>
-
 </LinearLayout>

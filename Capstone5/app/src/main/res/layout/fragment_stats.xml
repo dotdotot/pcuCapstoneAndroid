@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:spinnerMode="dropdown"
-            android:entries="@array/Room"
             android:textSize="25sp"/>
         <TextView
             android:layout_width="wrap_content"
@@ -126,22 +125,22 @@
                 android:layout_width="170dp"
                 android:layout_height="match_parent"
                 android:layout_weight="10"/>
-            <Button
-                android:id="@+id/cancel_btn"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:layout_gravity="left"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:text="초기화" />
-            <Button
-                android:id="@+id/ok_btn"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:layout_gravity="right"
-                android:text="조회" />
-        </LinearLayout>
+                <Button
+                    android:id="@+id/cancel_btn"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="left"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:text="초기화" />
+                <Button
+                    android:id="@+id/ok_btn"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="right"
+                    android:text="조회" />
+            </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -202,7 +201,7 @@
                     android:id="@+id/stats_dust"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
                     android:text=""
                     android:textSize="20sp"/>

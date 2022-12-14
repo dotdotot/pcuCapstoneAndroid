@@ -36,6 +36,7 @@ public class SignupFragment extends Fragment {
     int signup_pw_check_flag;
     int signup_flag;
     String url;
+    String post_url;
     String[] signup_info_str = new String[6];
     @Override
     public void onAttach(Context context) {
@@ -62,7 +63,8 @@ public class SignupFragment extends Fragment {
         } catch (JSONException e) { e.printStackTrace(); }
         final String requestBody = String.valueOf(InfoJSON.toString());
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null,
+        post_url = url + signup_info_str[0] + "/" + signup_info_str[1] + "/" + signup_info_str[3] + "/" + signup_info_str[2] + "/" + signup_info_str[4] + "/" + signup_info_str[5];
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, post_url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -124,7 +126,7 @@ public class SignupFragment extends Fragment {
         signup_back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.onFragmentChange(0);       //로그인 화면으로 이동
+                activity.onFragmentChange(0, "");//로그인 화면으로 이동
                 for(int i = 0; i < 7; i++) {            //입력한 정보들 전부 초기화
                     signup_info_edt[i].setText("");     //입력칸 비우기
                     signup_pw_check_notice.setText(""); //공지칸 비우기
@@ -177,7 +179,7 @@ public class SignupFragment extends Fragment {
                     signup_info_str[3] = signup_info_edt[4].getText().toString();
                     signup_info_str[4] = signup_info_edt[5].getText().toString();
                     signup_info_str[5] = signup_info_edt[6].getText().toString();
-                    activity.onFragmentChange(0);     //로그인 화면으로 이동
+                    activity.onFragmentChange(0, "");//로그인 화면으로 이동
                     VolleyServer(signup_info_str, url);
                     for(int i = 0; i < 7; i++) {            //입력한 정보들 전부 초기화
                         signup_info_edt[i].setText("");     //입력칸 비우기
